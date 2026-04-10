@@ -20,7 +20,7 @@ The full course files are located here: [course_document_git_clone_link](https:/
         - Create the RSA key with `openssl genrsa 2048 | openssl pkcs8 -topk8 -inform PEM -out rsa_key.p8 -nocrypt`
         - Create the public key from the above output with `openssl rsa -in rsa_key.p8 -pubout -out rsa_key.pub`
         - Also, keep in mind that the header and the footer need to be removed. Only use the main body of the key.
-    -
+    - I left the public RSA keys in the snowflake starter scripts. The session expires soon and the key won't be usable.
  - [Running the setup scripts from the course selection.](https://github.com/nordquant/complete-dbt-bootcamp-zero-to-hero/blob/main/_course_resources/course-resources.md)
 - You'll also need the UV pages available in this repo link: [uv_pkgs](https://github.com/nordquant/dbt-student-repo.git)
 - If you need the UV install script, check this link:
@@ -47,7 +47,12 @@ The full course files are located here: [course_document_git_clone_link](https:/
             - then activate your new venv.
 - Then setup your dbt environment, the pyproject already has the dbt packages downloaded. Once activated, you should be able to run the command.
     - use `dbt init --skip-profile-setup airbnb`. This will prevent the walkthrough prompts when creating the environment.
-    
+- Inside snowflake, there are 3 different identifiers:
+    - The Account identifier (us `SELECT CURRENT_ACCOUNT();`) > WD93490
+    - The Org identifier (appears under the profile popup) > AAKRBAA used for routing
+    - And the display name > UC68357
+    - to confuse things more, this is the example of the url `https://app.snowflake.com/aakrbaa/uc68357/#/workspaces/ws/USER%24/PUBLIC/DEFAULT%24/scratch.sql`
+    - It turns out I needed this: AAKRBAA-UC68357 for it to actually connect. This format is like this `<ORG_ID>-<ACCOUNT_NAME>`. I also did not find this in the docs. It seems like the docs have not kept up over the years and even some online tuts are showing different things.
         
 
 
