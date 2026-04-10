@@ -1,0 +1,23 @@
+airbnb:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      # Connection Identifiers
+      account: AAKRBAA-UC68357
+      user: dbt
+      role: TRANSFORM
+
+      # Authentication
+      # https://docs.getdbt.com/docs/local/connect-data-platform/snowflake-setup?version=1.12
+      auth_method: rsa
+      private_key_path: ./../.secrets/rsa_key.p8
+      # private_key_passphrase: q
+
+      database: AIRBNB
+      warehouse: COMPUTE_WH
+      schema: dev_schema
+      threads: 1
+      client_session_keep_alive: False
+      # query_tag: asdf
+
