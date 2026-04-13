@@ -16,7 +16,7 @@ airbnb:
 
       database: AIRBNB
       warehouse: COMPUTE_WH
-      schema: dev_schema
+      schema: dev
       threads: 1
       client_session_keep_alive: False
       # query_tag: asdf
