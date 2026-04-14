@@ -1,0 +1,3 @@
+{
+    "dbt.dbtPythonPathOverride": "/home/sunny/Documents/code_spaces/dbt_snowflake/udemy-dbt-bootcamp/.venv/bin/python3"
+}
