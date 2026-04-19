@@ -53,6 +53,10 @@ The full course files are located here: [course_document_git_clone_link](https:/
     - And the display name > UC68357
     - to confuse things more, this is the example of the url `https://app.snowflake.com/aakrbaa/uc68357/#/workspaces/ws/USER%24/PUBLIC/DEFAULT%24/scratch.sql`
     - It turns out I needed this: AAKRBAA-UC68357 for it to actually connect. This format is like this `<ORG_ID>-<ACCOUNT_NAME>`. I also did not find this in the docs. It seems like the docs have not kept up over the years and even some online tuts are showing different things.
+- for the seeds section:
+    - The recommend running this `curl https://dbtlearn.s3.us-east-2.amazonaws.com/seed_full_moon_dates.csv -o seeds/seed_full_moon_dates.csv`
+    - then run `dbt seed`
+    - dbt will try to figure out the data types for the fields.
         
 
 ## DBT commands & Notes
@@ -60,6 +64,7 @@ DBT commands
     - `dbt run` > this is simply building all the models
     - `dbt run --full-refresh` > build all models from scratch, even incrementals.
     - `dbt build` > build and test all models
+    - `dbt seed` > import the seed from source dir.
 DBT Notes
     - materializations (denoted by materialized)
         - table

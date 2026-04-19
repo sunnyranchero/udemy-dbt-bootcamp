@@ -1,13 +1,12 @@
-WITH
-    raw_hosts AS (
-        SELECT
-            *
-        FROM
-            airbnb.raw.raw_hosts
-    )
+WITH raw_hosts AS (
+    SELECT
+        *
+    FROM
+        airbnb.raw.raw_hosts
+)
 SELECT
-    id as host_id,
-    name as host_name,
+    id AS host_id,
+    name AS host_name,
     is_superhost,
     created_at,
     updated_at
