@@ -55,6 +55,18 @@ The full course files are located here: [course_document_git_clone_link](https:/
     - It turns out I needed this: AAKRBAA-UC68357 for it to actually connect. This format is like this `<ORG_ID>-<ACCOUNT_NAME>`. I also did not find this in the docs. It seems like the docs have not kept up over the years and even some online tuts are showing different things.
         
 
+## DBT commands & Notes
+DBT commands
+    - `dbt run` > this is simply building all the models
+    - `dbt run --full-refresh` > build all models from scratch, even incrementals.
+    - `dbt build` > build and test all models
+DBT Notes
+    - materializations (denoted by materialized)
+        - table
+        - view
+        - emphemeral (intermediate table like a cte that never gets full put into the target but is used to produce a result and then disappear. Think something like a lookup table or query)
+        - incremental (increments on a specific field, is a table at its core.)
+
 
 
 ***
