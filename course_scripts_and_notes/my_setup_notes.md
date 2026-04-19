@@ -66,6 +66,10 @@ DBT Notes
         - view
         - emphemeral (intermediate table like a cte that never gets full put into the target but is used to produce a result and then disappear. Think something like a lookup table or query)
         - incremental (increments on a specific field, is a table at its core.)
+    - If you switch a view/table to ephemeral, it will not delete the view by default. You may do that on your own at the db level.
+    - DBT stores run info in this target dir:
+        - `code target/run/airbnb/models/dim/dim_listings_cleansed.sql`
+        - This is the actual sql code dbt generated and executed.
 
 
 

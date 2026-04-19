@@ -38,3 +38,5 @@ models:
     # to know that.
     dim:
       +materialized: table
+    src:
+      +materialized: ephemeral
