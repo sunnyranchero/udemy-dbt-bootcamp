@@ -57,6 +57,13 @@ The full course files are located here: [course_document_git_clone_link](https:/
     - The recommend running this `curl https://dbtlearn.s3.us-east-2.amazonaws.com/seed_full_moon_dates.csv -o seeds/seed_full_moon_dates.csv`
     - then run `dbt seed`
     - dbt will try to figure out the data types for the fields.
+
+General sql:
+    - There are a few types of Slowly Changing Dimension (SCD) tables
+        - Type 1
+        - Type 2 > new row with the change but there is a valid_from and valid_to field. Soft delete.
+        - Type 3
+        - Type 4 
         
 
 ## DBT commands & Notes
@@ -65,6 +72,10 @@ DBT commands
     - `dbt run --full-refresh` > build all models from scratch, even incrementals.
     - `dbt build` > build and test all models
     - `dbt seed` > import the seed from source dir.
+    - `dbt compile` > just makes sure that everything can be processed without actually pushing it to the database.
+    - `dbt source freshness` > just checks if the data is fresh or not compared to what was configured in the sources.yml
+        - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
+        
 DBT Notes
     - materializations (denoted by materialized)
         - table
@@ -75,7 +86,7 @@ DBT Notes
     - DBT stores run info in this target dir:
         - `code target/run/airbnb/models/dim/dim_listings_cleansed.sql`
         - This is the actual sql code dbt generated and executed.
-
+    - dbt uses snapshots for SCD tables.
 
 
 ***
