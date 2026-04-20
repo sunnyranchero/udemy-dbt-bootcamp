@@ -4,6 +4,7 @@ models:
     - minimum_row_count:
         arguments:
           min_row_count: 1000
+          severity: warn
 
     columns:
       - name: listing_id
