@@ -76,6 +76,7 @@ DBT commands
     - `dbt source freshness` > just checks if the data is fresh or not compared to what was configured in the sources.yml
         - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
     - `dbt snapshot` > creates the snapshot when run and updates the snapshot when run again.
+    - `dbt test` > executes the tests for all of the models
         
 DBT Notes
     - materializations (denoted by materialized)
