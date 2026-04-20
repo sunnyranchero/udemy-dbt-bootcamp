@@ -77,6 +77,7 @@ DBT commands
         - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
     - `dbt snapshot` > creates the snapshot when run and updates the snapshot when run again.
     - `dbt test` > executes the tests for all of the models
+    - `dbt test -s dim_listings_minimum_nights` > you can also just test 1 of your tests by listing out the actual name of the test after the -s flag.
         
 DBT Notes
     - materializations (denoted by materialized)
@@ -92,6 +93,8 @@ DBT Notes
     - You can have snapshot configs in either the model folder with a `_snapshots.yml` prefix or in the snapshots dir.
         - The teacher recommends the model folder but either is fine. He also mentioned keeping it to 1 snapshot per file.
     - The tests are designed to generate the code needed to test and ideally return 0 records.
+    - When it comes to unit tests, you may also put it in any subfolder under "tests" like "./tests/unit/my_test_name or under model. In the example, the prof preferred to put it under the model directory.
+        - It can be called anything.yml
 
 
 ***
