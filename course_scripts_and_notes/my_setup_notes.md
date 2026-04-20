@@ -91,6 +91,7 @@ DBT Notes
     - dbt uses snapshots for SCD tables.
     - You can have snapshot configs in either the model folder with a `_snapshots.yml` prefix or in the snapshots dir.
         - The teacher recommends the model folder but either is fine. He also mentioned keeping it to 1 snapshot per file.
+    - The tests are designed to generate the code needed to test and ideally return 0 records.
 
 
 ***

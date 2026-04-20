@@ -40,3 +40,8 @@ models:
       +materialized: table
     src:
       +materialized: ephemeral
+
+# If you want to store the failures. Optional setting.
+# This will store it in your target datawarehouse like ariflow.DEV_dbt_test__audit...
+data_tests:
+  +store_failures: true
