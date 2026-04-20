@@ -72,12 +72,17 @@ DBT commands
     - `dbt run --full-refresh` > build all models from scratch, even incrementals.
     - `dbt build` > build and test all models, creates all snapshots. Runs ` dbt test && dbt snapshot && dbt run`
     - `dbt seed` > import the seed from source dir.
-    - `dbt compile` > just makes sure that everything can be processed without actually pushing it to the database.
+    - `dbt compile` > just makes sure that everything can be processed without actually pushing it to the database. > This can also render Jinja directly to the screen if you use --inline 'my_jinja_text'
     - `dbt source freshness` > just checks if the data is fresh or not compared to what was configured in the sources.yml
         - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
     - `dbt snapshot` > creates the snapshot when run and updates the snapshot when run again.
     - `dbt test` > executes the tests for all of the models
     - `dbt test -s dim_listings_minimum_nights` > you can also just test 1 of your tests by listing out the actual name of the test after the -s flag.
+    - `dbt compile --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
+        > This is how to render jinja in the command line using the dbt jinja engine. Shows the sql
+    - `dbt show --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
+        > This is how to render jinja in the command line using the dbt jinja engine
+    
         
 DBT Notes
     - materializations (denoted by materialized)
