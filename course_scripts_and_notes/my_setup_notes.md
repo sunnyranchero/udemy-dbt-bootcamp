@@ -70,11 +70,12 @@ General sql:
 DBT commands
     - `dbt run` > this is simply building all the models
     - `dbt run --full-refresh` > build all models from scratch, even incrementals.
-    - `dbt build` > build and test all models
+    - `dbt build` > build and test all models, creates all snapshots. Runs ` dbt test && dbt snapshot && dbt run`
     - `dbt seed` > import the seed from source dir.
     - `dbt compile` > just makes sure that everything can be processed without actually pushing it to the database.
     - `dbt source freshness` > just checks if the data is fresh or not compared to what was configured in the sources.yml
         - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
+    - `dbt snapshot` > creates the snapshot when run and updates the snapshot when run again.
         
 DBT Notes
     - materializations (denoted by materialized)
@@ -87,6 +88,8 @@ DBT Notes
         - `code target/run/airbnb/models/dim/dim_listings_cleansed.sql`
         - This is the actual sql code dbt generated and executed.
     - dbt uses snapshots for SCD tables.
+    - You can have snapshot configs in either the model folder with a `_snapshots.yml` prefix or in the snapshots dir.
+        - The teacher recommends the model folder but either is fine. He also mentioned keeping it to 1 snapshot per file.
 
 
 ***
