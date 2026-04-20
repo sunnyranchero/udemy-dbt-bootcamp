@@ -45,3 +45,6 @@ models:
 # This will store it in your target datawarehouse like ariflow.DEV_dbt_test__audit...
 data_tests:
   +store_failures: true
+  # You may also pick the schema you want to drop this into instead of the default.
+  # normally starts with a "_" symbol and results in DEV_[_whatever was listed] 
+  +schema: _test_failures
