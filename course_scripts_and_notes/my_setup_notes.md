@@ -82,6 +82,8 @@ DBT commands
         > This is how to render jinja in the command line using the dbt jinja engine. Shows the sql
     - `dbt show --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
         > This is how to render jinja in the command line using the dbt jinja engine
+    - `dbt compile --inline 'SELECT * FROM {{ ref("dim_listings_cleansed") }} WHERE {{ no_empty_strings(ref("dim_listings_cleansed")) }}'` Another example that could use a macro.
+    - `dbt deps` > this is how you install packages from your `packages.yml` file.
     
         
 DBT Notes
