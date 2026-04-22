@@ -1,4 +1,8 @@
 # These packages come from: https://hub.getdbt.com/
+# Really what this does is a git clone from the package source on github
+# If this fails due to the https cert, you can simply copy it all under:
+#   ./dbt_packages/the_package_name. It looks like the versioning is part of a "tree"...
+#   it just looks like a fancy tag/bookmark
 packages:
   - package: dbt-labs/dbt_utils
     version: 1.3.0
