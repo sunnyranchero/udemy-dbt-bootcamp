@@ -84,6 +84,8 @@ DBT commands
         > This is how to render jinja in the command line using the dbt jinja engine
     - `dbt compile --inline 'SELECT * FROM {{ ref("dim_listings_cleansed") }} WHERE {{ no_empty_strings(ref("dim_listings_cleansed")) }}'` Another example that could use a macro.
     - `dbt deps` > this is how you install packages from your `packages.yml` file.
+    - `dbt docs generate` > create the docs based on your models.
+        - Then run `dbt docs serve` to run the light weight docs server. Python based. But you may want to use a better server than this in production.
     
         
 DBT Notes
