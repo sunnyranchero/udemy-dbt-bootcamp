@@ -7,3 +7,8 @@ Keep in mind that old listings might have `minimum_nights` set to 0 in the sourc
 
 {% enddocs %}
 
+{% docs dim_hosts_cleansed %}
+This is just a basic doc for the dim_hosts_cleansed model.
+This is for assignment #6. 
+
+{% enddocs %}

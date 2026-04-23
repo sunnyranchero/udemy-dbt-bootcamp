@@ -34,6 +34,8 @@ models:
 
   
   - name: dim_hosts_cleansed
+    description: '{{ doc("dim_hosts_cleansed") }}'
+
     config:
       contract:
         enforced: true
