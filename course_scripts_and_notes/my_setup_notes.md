@@ -25,7 +25,7 @@ The full course files are located here: [course_document_git_clone_link](https:/
 - You'll also need the UV pages available in this repo link: [uv_pkgs](https://github.com/nordquant/dbt-student-repo.git)
 - If you need the UV install script, check this link:
     - [Main UV website](https://docs.astral.sh/uv/getting-started/installation/#upgrading-uv)
-- The prof also provided the toml and uv.lock file in this repo [dbt-student-repo](https://github.com/nordquant/dbt-student-repo.git)
+- The prof also provided the toml and uv.lock file in this repo [dbt-student-repo](https://github.com/nordquant/dbt-student-repo.git)   
     - There was supposed to also be a .python version file but it is not a hard requirement to get UV working.
     - Simply running uv sync will not only create the venv but it will also create the uv.lock file if you had not created one already
     - A note about uv lock files
@@ -88,8 +88,8 @@ DBT commands
     - Then run `dbt docs serve` to run the light weight docs server. Python based. But you may want to use a better server than this in production.
 - `dbt run --debug` - will show more information that is not really shown, such as the "grants" statement.
 - `dbt test --select source:airbnb.listings` > Select the source instead of a model.
-- `bt --debug test --select source:airbnb.listings` >  is 1 way to debug a test. 
-
+- `dbt --debug test --select source:airbnb.listings` >  is 1 way to debug a test. 
+- `dbt run-operation [name_of_macro]` > this is how you would run a macro by itself.
     
 DBT Notes
 - materializations (denoted by materialized)
