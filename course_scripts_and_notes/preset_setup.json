@@ -1,0 +1,7 @@
+{
+    "auth_method": "keypair",
+    "auth_params": {
+        "privatekey_body": "-----BEGIN PRIVATE KEY-----\nMIIEvASCBK/MuWx13gBmtshI1rZj8Kb+8cTsrhCvqS2aN\nQjqN3pM4MA0EjgcBRJ5GGYh76+8vuVjOR2bl3Zx6OtPIscezCZtIUBwb2KimSoKO\niHEw7lTLfH/JASngjPCKHY3Jh1+PxG0faT7Xw4akuVKjfdRuWrp2DWq6rJJBXf9t\n0LVJT/MVtILHAtN1tlV3AbxtZmgLdjqdZZF2xzExwQKBgQD3W92Z/oumhDkcyzVZ\nl1AGoM0AbQmOPt+mRK+s2JhEKcyTM4xSIKe2vrbo9ckDJjRD1T/Hlt2wA7Hklk1r\nzuTrVZY01wGDwMcvyPErKCgzIB/UEsllpeFb+8pDpcAuHGhxLDZCvfkprQeAeCra\nKLcTIu6mg2zSWvC9EEZY84F1IQKBgQC9GS6sraUu1X/SG+DXtbqL2dSA7hNLDi/e\ntPmXjbxXVfoIW67AJwv1bF/6qjnLrl6l2XUCsvQ7g+3gd8pylU9USrfGEgBlXeZR\nFlAhrB/ZaRc6ol171FGyMz9Gs5d5blS0UjAut39hg9C0RDQ4JX/lBALv0JqO36Uy\nqWvdwylRGwKBgH5lIscdmp5r0gM0kv5Eo0+/uwEMtmVJG18Kmfnoc2XhNffBz2Hn\n7csjiLNhZGWHkA1ZWk3SeVUHjk8Pvl/oSHE4OpilhNCeISn5s8IpsuDs+VaUgvS9\n3nnyH1iRybHGMlgiD1frWvZAxCSRQtRXGbVdlDTh0ylp7rmtJ0UsqGoBAoGBALHG\ns/+5fHsMUxAID5kci5WhI8xWhqLgYpbAk4oswS1mchtbfm2+B9simRVC5fUcKHVJ\nfF0eOsidHo0ScazJvHvlhuJa2C50WexPyuPtO0AdMa55KOQa1vdugIWKn9SUqmOg\nhRXWg5X848AmAuXqM1PuMoidGEFL9rYrW3JwYS6TAoGAEqDv5jdf0njyZaB2Vagm\naqijVk79l5R7km+kTVxNL0BB1JmNroj8E4XgQsYSAnGrYkWHtu4aP25Z+2dhW30e\nVtw8uMU5lrJ64K7d4Nx/emfeGkW+xk68Fa8CiByy8FafU643eGfhxISxT2EU16Vu\nVRgmcxlpEid7NIYhC7K3d6Y=\n-----END PRIVATE KEY-----",
+        "privatekey_pass": ""
+    }
+}

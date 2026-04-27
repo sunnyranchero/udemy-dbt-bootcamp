@@ -86,6 +86,7 @@ DBT commands
 - `dbt deps` > this is how you install packages from your `packages.yml` file.
 - `dbt docs generate` > create the docs based on your models.
     - Then run `dbt docs serve` to run the light weight docs server. Python based. But you may want to use a better server than this in production.
+- `dbt run --debug` - will show more information that is not really shown, such as the "grants" statement.
 
     
 DBT Notes
@@ -114,6 +115,14 @@ You can find these after running `dbt compile`:
         - put this in the dbt_project.yaml
     - `pre-hook` - specifically at the model,seed, snapshot level before it runs.
     - `post-hook` - specifically at the model,seed, snapshot level after it runs.
+
+### Connecting to Preset.io data dashboard
+This will be harder to actually do with the key pair. The proj mentioned that there was a way to auto generate the items needed, I'm assuming from his automated setup. I'm doing it the hard way.
+You can find the docs here [preset.io instructions for snowflake](https://docs.preset.io/docs/snowflake_)
+
+The first step involves building this out: `snowflake://<Username>@<Account>/<Database>?role=<Role>&warehouse=<Warehouse>`. This is called the URI for SQLAlchemy to use.
+I think this is the final version: `snowflake://preset@AAKRBAA-UC68357/AIRBNB?role=REPORTER&warehouse=COMPUTE_WH`
+
 
 
 ***
