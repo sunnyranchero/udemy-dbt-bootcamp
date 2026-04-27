@@ -30,10 +30,20 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
+
+on-run-start: 
+  - "CREATE TABLE IF NOT EXISTS {{ target.schema }}.audit_log (
+      model_name STRING,
+      run_timestamp TIMESTAMP
+      )"
+      
+
 models:
   # Models now need a + in front of their names rather than just the name.
   airbnb:
     # Config indicated by + and applies to all files under models/example/
+    +post-hook:
+      - "INSERT INTO {{ target.schema }}.audit_log VALUES ( '{{ this }}', CURRENT_TIMESTAMP )"
     +materialized: view
     # The name without the "+" is an actual folder. DBT uses the lack of +
     # to know that.

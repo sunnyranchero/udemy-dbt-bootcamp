@@ -68,42 +68,52 @@ General sql:
 
 ## DBT commands & Notes
 DBT commands
-    - `dbt run` > this is simply building all the models
-    - `dbt run --full-refresh` > build all models from scratch, even incrementals.
-    - `dbt build` > build and test all models, creates all snapshots. Runs ` dbt test && dbt snapshot && dbt run`
-    - `dbt seed` > import the seed from source dir.
-    - `dbt compile` > just makes sure that everything can be processed without actually pushing it to the database. > This can also render Jinja directly to the screen if you use --inline 'my_jinja_text'
-    - `dbt source freshness` > just checks if the data is fresh or not compared to what was configured in the sources.yml
-        - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
-    - `dbt snapshot` > creates the snapshot when run and updates the snapshot when run again.
-    - `dbt test` > executes the tests for all of the models
-    - `dbt test -s dim_listings_minimum_nights` > you can also just test 1 of your tests by listing out the actual name of the test after the -s flag.
-    - `dbt compile --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
-        > This is how to render jinja in the command line using the dbt jinja engine. Shows the sql
-    - `dbt show --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
-        > This is how to render jinja in the command line using the dbt jinja engine
-    - `dbt compile --inline 'SELECT * FROM {{ ref("dim_listings_cleansed") }} WHERE {{ no_empty_strings(ref("dim_listings_cleansed")) }}'` Another example that could use a macro.
-    - `dbt deps` > this is how you install packages from your `packages.yml` file.
-    - `dbt docs generate` > create the docs based on your models.
-        - Then run `dbt docs serve` to run the light weight docs server. Python based. But you may want to use a better server than this in production.
+- `dbt run` > this is simply building all the models
+- `dbt run --full-refresh` > build all models from scratch, even incrementals.
+- `dbt build` > build and test all models, creates all snapshots. Runs ` dbt test && dbt snapshot && dbt run`
+- `dbt seed` > import the seed from source dir.
+- `dbt compile` > just makes sure that everything can be processed without actually pushing it to the database. > This can also render Jinja directly to the screen if you use --inline 'my_jinja_text'
+- `dbt source freshness` > just checks if the data is fresh or not compared to what was configured in the sources.yml
+    - exit code is non-zero when it hits a nonfresh error. In linux `echo $?` should list it.
+- `dbt snapshot` > creates the snapshot when run and updates the snapshot when run again.
+- `dbt test` > executes the tests for all of the models
+- `dbt test -s dim_listings_minimum_nights` > you can also just test 1 of your tests by listing out the actual name of the test after the -s flag.
+- `dbt compile --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
+    > This is how to render jinja in the command line using the dbt jinja engine. Shows the sql
+- `dbt show --inline '{{ select_positive_values(dim_listings_cleansed, minimum_nights) }}'`
+    > This is how to render jinja in the command line using the dbt jinja engine
+- `dbt compile --inline 'SELECT * FROM {{ ref("dim_listings_cleansed") }} WHERE {{ no_empty_strings(ref("dim_listings_cleansed")) }}'` Another example that could use a macro.
+- `dbt deps` > this is how you install packages from your `packages.yml` file.
+- `dbt docs generate` > create the docs based on your models.
+    - Then run `dbt docs serve` to run the light weight docs server. Python based. But you may want to use a better server than this in production.
+
     
-        
 DBT Notes
-    - materializations (denoted by materialized)
-        - table
-        - view
-        - emphemeral (intermediate table like a cte that never gets full put into the target but is used to produce a result and then disappear. Think something like a lookup table or query)
-        - incremental (increments on a specific field, is a table at its core.)
-    - If you switch a view/table to ephemeral, it will not delete the view by default. You may do that on your own at the db level.
-    - DBT stores run info in this target dir:
-        - `code target/run/airbnb/models/dim/dim_listings_cleansed.sql`
-        - This is the actual sql code dbt generated and executed.
-    - dbt uses snapshots for SCD tables.
-    - You can have snapshot configs in either the model folder with a `_snapshots.yml` prefix or in the snapshots dir.
-        - The teacher recommends the model folder but either is fine. He also mentioned keeping it to 1 snapshot per file.
-    - The tests are designed to generate the code needed to test and ideally return 0 records.
-    - When it comes to unit tests, you may also put it in any subfolder under "tests" like "./tests/unit/my_test_name or under model. In the example, the prof preferred to put it under the model directory.
-        - It can be called anything.yml
+- materializations (denoted by materialized)
+    - table
+    - view
+    - emphemeral (intermediate table like a cte that never gets full put into the target but is used to produce a result and then disappear. Think something like a lookup table or query)
+    - incremental (increments on a specific field, is a table at its core.)
+- If you switch a view/table to ephemeral, it will not delete the view by default. You may do that on your own at the db level.
+- DBT stores run info in this target dir:
+    - `code target/run/airbnb/models/dim/dim_listings_cleansed.sql`
+    - This is the actual sql code dbt generated and executed.
+- dbt uses snapshots for SCD tables.
+- You can have snapshot configs in either the model folder with a `_snapshots.yml` prefix or in the snapshots dir.
+    - The teacher recommends the model folder but either is fine. He also mentioned keeping it to 1 snapshot per file.
+- The tests are designed to generate the code needed to test and ideally return 0 records.
+- When it comes to unit tests, you may also put it in any subfolder under "tests" like "./tests/unit/my_test_name or under model. In the example, the prof preferred to put it under the model directory.
+    - It can be called anything.yml
+- Then there are analyses that can be created. These are simply things you want to run sql for but want to leverage dbt's engine to create the query.
+You can find these after running `dbt compile`:
+`./target/compiled/dbtlearn/analyses/...` with ... being the analysis name.
+- there are also different types of hooks, 4 specifically:
+    - `on_run_start` - when dbt starts running
+        - put this in the dbt_project.yaml
+    - `on_run_end` -  when dbt ends running
+        - put this in the dbt_project.yaml
+    - `pre-hook` - specifically at the model,seed, snapshot level before it runs.
+    - `post-hook` - specifically at the model,seed, snapshot level after it runs.
 
 
 ***
