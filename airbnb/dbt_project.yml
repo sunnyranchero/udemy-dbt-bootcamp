@@ -42,6 +42,8 @@ models:
   # Models now need a + in front of their names rather than just the name.
   airbnb:
     # Config indicated by + and applies to all files under models/example/
+    +grants:
+      select: ["transform", "reporter"]
     +post-hook:
       - "INSERT INTO {{ target.schema }}.audit_log VALUES ( '{{ this }}', CURRENT_TIMESTAMP )"
     +materialized: view
