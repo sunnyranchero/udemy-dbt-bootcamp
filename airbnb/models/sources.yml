@@ -12,6 +12,20 @@ sources:
               - dbt_expectations.expect_column_distinct_count_to_equal:
                   arguments:
                     value: 4
+          - name: price
+            tests: 
+              - dbt_expectations.expect_column_values_to_match_regex:
+                  arguments:
+                    # start with (denoted by ^) $ ($ is a reserved char, so escape it.)
+                    # escape in yml requires a double \. so \\$ then equals \$ for the regex.
+                    # Then it must be a number 0 through 9. Then continue with a number or . (dot)
+                    # The + means more than 1 char.
+                    # and go through the whole string and end (end of string is a $ sign)
+                    # then escape the dot since it is also a reserverd char.
+                    # regex: "^\\$[0-9][0-9\\.]+$"
+                    # Updating the regex to enforce only currency style values with 2 decimals.
+                    regex: "^\\\\$[0-9]+\\\\.[0-9]{2}$"
+
 
       - name: hosts
         identifier: raw_hosts
