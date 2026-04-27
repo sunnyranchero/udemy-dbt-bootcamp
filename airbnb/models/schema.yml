@@ -64,6 +64,31 @@ models:
       - name: created_at
         data_type: timestamp  
 
+  - name: dim_listings_with_hosts
+    tests:
+      - dbt_expectations.expect_table_row_count_to_equal_other_table:
+          arguments:
+            compare_model: source('airbnb', 'listings')
+    columns: 
+      - name: price
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              arguments:
+                column_type: number
+          - dbt_expectations.expect_column_quantile_values_to_be_between:
+              # I want 99% of my values to be between 50 and 500
+              arguments:
+                quantile: .99
+                min_value: 50
+                max_value: 500
+          - dbt_expectations.expect_column_max_to_be_between:
+              arguments:
+                min_value: 0
+                max_value: 5000
+                config:
+                  severity: warn
+
+
   - name: fct_reviews
     columns:
       - name: listing_id
