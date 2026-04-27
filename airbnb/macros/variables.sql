@@ -12,6 +12,6 @@
 
     {# dbt variables are also known as project variables. #}
 
-    {{ log( "Hello " ~ var("user_name") ~ "!", info=True) }}
+    {{ log( "Hello " ~ var("user_name", "some_default_value") ~ "!", info=True) }}
     {# run with dbt run-operation learn_variables --vars '{user_name: dbtProjectVar_someone}' #}
 {% endmacro %}
