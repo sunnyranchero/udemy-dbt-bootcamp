@@ -118,6 +118,7 @@ You can find these after running `dbt compile`:
     - `pre-hook` - specifically at the model,seed, snapshot level before it runs.
     - `post-hook` - specifically at the model,seed, snapshot level after it runs.
 - Another package the proj wants us to use is dbt-expectations: https://github.com/calogica/dbt-expectations
+- DBT does provide some strategies for incremental loads see [this dbt website link](https://docs.getdbt.com/docs/build/incremental-models?version=1.12)
 
 
 ### Connecting to Preset.io data dashboard
