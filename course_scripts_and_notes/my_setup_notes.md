@@ -67,7 +67,8 @@ General sql:
         
 
 ## DBT commands & Notes
-DBT commands
+
+### DBT commands
 - `dbt run` > this is simply building all the models
 - `dbt run --full-refresh` > build all models from scratch, even incrementals.
 - `dbt build` > build and test all models, creates all snapshots. Runs ` dbt test && dbt snapshot && dbt run`
@@ -90,8 +91,10 @@ DBT commands
 - `dbt test --select source:airbnb.listings` > Select the source instead of a model.
 - `dbt --debug test --select source:airbnb.listings` >  is 1 way to debug a test. 
 - `dbt run-operation [name_of_macro]` > this is how you would run a macro by itself.
-    
-DBT Notes
+
+***
+
+### DBT Notes
 - materializations (denoted by materialized)
     - table
     - view
@@ -120,7 +123,7 @@ You can find these after running `dbt compile`:
 - Another package the proj wants us to use is dbt-expectations: https://github.com/calogica/dbt-expectations
 - DBT does provide some strategies for incremental loads see [this dbt website link](https://docs.getdbt.com/docs/build/incremental-models?version=1.12)
 
-
+***
 ### Connecting to Preset.io data dashboard
 This will be harder to actually do with the key pair. The proj mentioned that there was a way to auto generate the items needed, I'm assuming from his automated setup. I'm doing it the hard way.
 You can find the docs here [preset.io instructions for snowflake](https://docs.preset.io/docs/snowflake_)
@@ -134,9 +137,6 @@ SELECT
   CURRENT_ORGANIZATION_NAME() AS org_identifier, 
   CURRENT_ACCOUNT_NAME() AS display_name;   
 ```
-
-
-
 
 
 ***
@@ -190,3 +190,28 @@ You can also make VS Code’s “Terminal” load the env var automatically by c
 
 Then install the “DotENV” extension for VS Code — it’ll auto-load the .env into your integrated terminal.
 
+
+***
+### Dagster
+
+The python packages needed to run Dagster were provided in the `pyproject.toml` file. 
+To start run `dagster-dbt project scaffold --project-name my_dbt_dagster_project --dbt-project-dir=airbnb`.
+The part after the `--project-name` is the name of the directory that is created.
+The `--dbt-project-dir` is the path on the current system. In the video, the prof goes 1 level up so he can run the command from the pwd.
+
+One of the reasons Dagster was used here is because it has a tighter integration to dbt than the other products available.
+I did notice though that airflow 3.0 has improved this by the use of astronmer's cosmos package.
+
+**Here are some other notes from the when I asked the AI chat about each part of the commands above**
+
+*"Breaking it down:*
+
+`dagster-dbt` — *The Dagster-dbt integration tool. Allows you to run dbt projects within Dagster.*
+
+`project scaffold` *— Creates a new boilerplate Dagster project pre-configured to work with dbt.*
+
+`--project-name my_dbt_dagster_project` *— Names your new Dagster project my_dbt_dagster_project. This is the folder and project identifier.*
+
+`--dbt-project-dir=airbnb` *— Tells Dagster where your existing dbt project lives. In this case, it's in a folder called airbnb. Dagster will integrate with that dbt project.*
+
+*Overall: It scaffolds (generates) a new Dagster project called my_dbt_dagster_project that is already wired up to orchestrate your dbt project in the airbnb directory."*
