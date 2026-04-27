@@ -54,6 +54,12 @@ models:
     src:
       +materialized: ephemeral
 
+vars:
+# This section can be used to define default values for dbt project variables.
+# The command line variable will take precedence over this defined default.
+# Then if neither this value or the command line is set, the default listed in line will take precedence.
+  user_name: "The default user name for this project"
+
 # If you want to store the failures. Optional setting.
 # This will store it in your target datawarehouse like ariflow.DEV_dbt_test__audit...
 data_tests:
