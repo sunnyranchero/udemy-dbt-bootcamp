@@ -87,6 +87,7 @@ DBT commands
 - `dbt docs generate` > create the docs based on your models.
     - Then run `dbt docs serve` to run the light weight docs server. Python based. But you may want to use a better server than this in production.
 - `dbt run --debug` - will show more information that is not really shown, such as the "grants" statement.
+- `dbt test --select source:airbnb.listings` > Select the source instead of a model.
 
     
 DBT Notes
