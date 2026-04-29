@@ -215,3 +215,34 @@ I did notice though that airflow 3.0 has improved this by the use of astronmer's
 `--dbt-project-dir=airbnb` *— Tells Dagster where your existing dbt project lives. In this case, it's in a folder called airbnb. Dagster will integrate with that dbt project.*
 
 *Overall: It scaffolds (generates) a new Dagster project called my_dbt_dagster_project that is already wired up to orchestrate your dbt project in the airbnb directory."*
+
+This is also an explanation for why there are 2 directories of the same name...
+```
+To confirm your summary:
+
+my_project_directory/ (Root): This is your Git repository root. It holds your .git folder, your README, and acts as the container for both the dbt work and the Dagster orchestration. This is where you run your git commit commands.
+
+airbnb/ (Sibling): This is your dbt project. It exists here as a standalone tool that you can run with dbt run independently of Dagster.
+
+my_dbt_dagster_project/ (Dagster Root): This is the Dagster project directory created by the scaffold command. It lives next to airbnb/. It holds dagster.yml and setup.py.
+
+my_dbt_dagster_project/my_dbt_dagster_project/ (Dagster Package): This is the Python code. The double name is just Python's way of saying "This folder is a module named my_dbt_dagster_project inside the project folder of the same name."
+```
+My summary based on this:
+
+```I think I have more information, I think it's just confusing because it seems redundant. From what I was reading the duplicate named directory within the other of the same name is a python thing. Outer directory to house the project setup. The inner directory of the same name houses the actual code. It seems that python requires it this way so it can treat the inner one as a module.```
+
+Here are some helpful links:
+
+https://medium.com/@dagster-io/from-python-projects-to-data-pipelines-dagster-blog-7daa00ba69fe
+
+https://courses.dagster.io/
+
+https://docs.dagster.io/
+
+### Dagster commands
+- `dagster dev` > must be run at the same level of the dagster project as the `pyproject.toml` (outer folder of the same name.)
+
+
+### Dagster notes
+- the schedules are disabled by default but can be found in the lower level directory of the same name: `schedules.py`. Just uncomment it.
